@@ -1,0 +1,393 @@
+# config = {'b': {None: ['Pe', 'MR', 'Pe', 'MR', 'P0', 'MR', 'MR', 'P0', 'ML', 'ML', 'o']},
+#           'o': {'1': ['MR', 'Px', 'ML', 'ML', 'ML', 'o'],
+#                 '0': ['q']},
+#           'q': {'0': ['MR', 'MR', 'q'],
+#                 '1': ['MR', 'MR', 'q'],
+#                 None: ['P1', 'ML', 'p']},
+#           'p': {'x': ['EE', 'MR', 'q'],
+#                 'e': ['MR', 'f'],
+#                 None: ['ML', 'ML', 'p']},
+#           'f': {'0': ['MR', 'MR', 'f'],
+#                 '1': ['MR', 'MR', 'f'],
+#                 'e': ['MR', 'MR', 'f'],
+#                 'x': ['MR', 'MR', 'f'],
+#                 None: ['P0', 'ML', 'ML', 'o']}
+#           }
+
+config = {'b': {'*': ['MR', 'readCommand']},
+
+          'currentCommand': {'0': ['ML', 'currentCommand'],
+                          '1': ['ML', 'currentCommand'],
+                          'R': ['ML', 'currentCommand'],
+                          'L': ['ML', 'currentCommand'],
+                          'P': ['ML', 'currentCommand'],
+                          'M': ['ML', 'currentCommand'],
+                          'E': ['ML', 'currentCommand'],
+                          '[': ['ML', 'currentCommand'],
+                          ']': ['ML', 'currentCommand'],
+                          '*': ['MR' 'readCommand']},
+
+          'nextCommand': {'0': ['ML', 'nextCommand'],
+                '1': ['ML', 'nextCommand'],
+                'R': ['ML', 'nextCommand'],
+                'L': ['ML', 'nextCommand'],
+                'P': ['ML', 'nextCommand'],
+                'M': ['ML', 'nextCommand'],
+                'E': ['ML', 'nextCommand'],
+                '[': ['ML', 'nextCommand'],
+                ']': ['ML', 'nextCommand'],
+                '*': ['EE', 'MR', 'MR', 'P*', 'MR' 'readCommand']},
+
+          'readCommand': {'P': ['MR', 'readCommandP'],
+                          'M': ['MR', 'readCommandM'],
+                          'G': ['MR', 'readCommandG']},
+
+          'readCommandP': {'0': ['MHP0'],
+                           '1': ['MHP1'],
+                           '[': ['MHP['],
+                           ']': ['MHP]'],
+                           'e': ['MHPe'],
+                           None: ['MHPNone']},
+          'readCommandM': {'R': ['MHMR'],
+                           'L': ['MHML']},
+
+          'readCommandG': {1: ['G2<1'],
+                           2: ['G2<2'],
+                           3: ['G2<3'],
+                           4: ['G2<4'],
+                           5: ['G2<5']},
+
+          # Goto tape head for [label]
+          'G2<1': {'<': ['G21'],
+                   '0': ['ML', 'G2<1'],
+                   '1': ['MR', 'P*', 'MR', 'readCommand'],
+                   '2': ['ML', 'G2<1'],
+                   '3': ['ML', 'G2<1'],
+                   '4': ['ML', 'G2<1'],
+                   '5': ['ML', 'G2<1'],
+                   'e': ['ML', 'G2<1'],
+                   'M': ['ML', 'G2<1'],
+                   'L': ['ML', 'G2<1'],
+                   'R': ['ML', 'G2<1'],
+                   'E': ['ML', 'G2<1'],
+                   '*': ['ML', 'G2<1']},
+          'G2<2': {'<': ['G22'],
+                   '0': ['ML', 'G2<2'],
+                   '1': ['ML', 'G2<2'],
+                   '2': ['MR', 'P*', 'MR', 'readCommand'],
+                   '3': ['ML', 'G2<2'],
+                   '4': ['ML', 'G2<2'],
+                   '5': ['ML', 'G2<2'],
+                   'e': ['ML', 'G2<2'],
+                   'M': ['ML', 'G2<2'],
+                   'L': ['ML', 'G2<2'],
+                   'R': ['ML', 'G2<2'],
+                   'E': ['ML', 'G2<2'],
+                   '*': ['ML', 'G2<2']},
+          'G2<3': {'<': ['G23'],
+                   '0': ['ML', 'G2<3'],
+                   '1': ['ML', 'G2<3'],
+                   '2': ['ML', 'G2<3'],
+                   '3': ['MR', 'P*', 'MR', 'readCommand'],
+                   '4': ['ML', 'G2<3'],
+                   '5': ['ML', 'G2<3'],
+                   'e': ['ML', 'G2<3'],
+                   'M': ['ML', 'G2<3'],
+                   'L': ['ML', 'G2<3'],
+                   'R': ['ML', 'G2<3'],
+                   'E': ['ML', 'G2<3'],
+                   '*': ['ML', 'G2<3']},
+          'G2<4': {'<': ['G24'],
+                   '0': ['ML', 'G2<4'],
+                   '1': ['ML', 'G2<4'],
+                   '2': ['ML', 'G2<4'],
+                   '3': ['ML', 'G2<4'],
+                   '4': ['MR', 'P*', 'MR', 'readCommand'],
+                   '5': ['ML', 'G2<4'],
+                   'e': ['ML', 'G2<4'],
+                   'M': ['ML', 'G2<4'],
+                   'L': ['ML', 'G2<4'],
+                   'R': ['ML', 'G2<4'],
+                   'E': ['ML', 'G2<4'],
+                   '*': ['ML', 'G2<4']},
+          'G2<5': {'<': ['G25'],
+                   '0': ['ML', 'G2<5'],
+                   '1': ['ML', 'G2<5'],
+                   '2': ['ML', 'G2<5'],
+                   '3': ['ML', 'G2<5'],
+                   '4': ['ML', 'G2<5'],
+                   '5': ['MR', 'P*', 'MR', 'readCommand'],
+                   'e': ['ML', 'G2<5'],
+                   'M': ['ML', 'G2<5'],
+                   'L': ['ML', 'G2<5'],
+                   'R': ['ML', 'G2<5'],
+                   'E': ['ML', 'G2<5'],
+                   '*': ['ML', 'G2<5']},
+
+          # Goto [label]
+          'G21': {'<': ['MR', 'G21'],
+                  '0': ['MR', 'G21'],
+                  '1': ['MR', 'readCommand'],
+                  '2': ['MR', 'G21'],
+                  '3': ['MR', 'G21'],
+                  '4': ['MR', 'G21'],
+                  '5': ['MR', 'G21'],
+                  'e': ['MR', 'G21'],
+                  'M': ['MR', 'G21'],
+                  'L': ['MR', 'G21'],
+                  'R': ['MR', 'G21'],
+                  'E': ['MR', 'G21'],
+                  '*': ['MR', 'G21'],
+                  None: ['MR', 'G21']},
+
+          'G22': {'<': ['MR', 'G22'],
+                  '0': ['MR', 'G22'],
+                  '1': ['MR', 'G22'],
+                  '2': ['MR', 'readCommand'],
+                  '3': ['MR', 'G22'],
+                  '4': ['MR', 'G22'],
+                  '5': ['MR', 'G22'],
+                  'e': ['MR', 'G22'],
+                  'M': ['MR', 'G22'],
+                  'L': ['MR', 'G22'],
+                  'R': ['MR', 'G22'],
+                  'E': ['MR', 'G22'],
+                  '*': ['MR', 'G22'],
+                  None: ['MR', 'G22']},
+
+          'G23': {'<': ['MR', 'G23'],
+                  '0': ['MR', 'G23'],
+                  '1': ['MR', 'G23'],
+                  '2': ['MR', 'G23'],
+                  '3': ['MR', 'readCommand'],
+                  '4': ['MR', 'G23'],
+                  '5': ['MR', 'G23'],
+                  'e': ['MR', 'G23'],
+                  'M': ['MR', 'G23'],
+                  'L': ['MR', 'G23'],
+                  'R': ['MR', 'G23'],
+                  'E': ['MR', 'G23'],
+                  '*': ['MR', 'G23'],
+                  None: ['MR', 'G23']},
+
+          'G24': {'<': ['MR', 'G24'],
+                  '0': ['MR', 'G24'],
+                  '1': ['MR', 'G24'],
+                  '2': ['MR', 'G24'],
+                  '3': ['MR', 'G24'],
+                  '4': ['MR', 'readCommand'],
+                  '5': ['MR', 'G24'],
+                  'e': ['MR', 'G24'],
+                  'M': ['MR', 'G24'],
+                  'L': ['MR', 'G24'],
+                  'R': ['MR', 'G24'],
+                  'E': ['MR', 'G24'],
+                  '*': ['MR', 'G24'],
+                  None: ['MR', 'G24']},
+
+          'G25': {'<': ['MR', 'G25'],
+                  '0': ['MR', 'G25'],
+                  '1': ['MR', 'G25'],
+                  '2': ['MR', 'G25'],
+                  '3': ['MR', 'G25'],
+                  '4': ['MR', 'G25'],
+                  '5': ['MR', 'readCommand'],
+                  'e': ['MR', 'G25'],
+                  'M': ['MR', 'G25'],
+                  'L': ['MR', 'G25'],
+                  'R': ['MR', 'G25'],
+                  'E': ['MR', 'G25'],
+                  '*': ['MR', 'G25'],
+                  None: ['MR', 'G25']},
+
+          # Move head to print [char to print]
+          'MHP0': {'0': ['MR', 'MHP0'],
+                   '1': ['MR', 'MHP0'],
+                   'R': ['MR', 'MHP0'],
+                   'L': ['MR', 'MHP0'],
+                   'P': ['MR', 'MHP0'],
+                   'M': ['MR', 'MHP0'],
+                   'e': ['MR', 'MHP0'],
+                   '[': ['MR', 'MHP0'],
+                   ']': ['MR', 'MHP0'],
+                   '^': ['ML', 'Print0']},
+
+          'MHP1': {'0': ['MR', 'MHP1'],
+                   '1': ['MR', 'MHP1'],
+                   'R': ['MR', 'MHP1'],
+                   'L': ['MR', 'MHP1'],
+                   'P': ['MR', 'MHP1'],
+                   'M': ['MR', 'MHP1'],
+                   'e': ['MR', 'MHP1'],
+                   '[': ['MR', 'MHP1'],
+                   ']': ['MR', 'MHP1'],
+                   '^': ['ML', 'Print1']},
+
+          'MHPe': {'0': ['MR', 'MHPe'],
+                   '1': ['MR', 'MHPe'],
+                   'R': ['MR', 'MHPe'],
+                   'L': ['MR', 'MHPe'],
+                   'P': ['MR', 'MHPe'],
+                   'M': ['MR', 'MHPe'],
+                   'e': ['MR', 'MHPe'],
+                   '[': ['MR', 'MHPe'],
+                   ']': ['MR', 'MHPe'],
+                   '^': ['ML', 'Printe']},
+
+          'MHP[': {'0': ['MR', 'MHP['],
+                   '1': ['MR', 'MHP['],
+                   'R': ['MR', 'MHP['],
+                   'L': ['MR', 'MHP['],
+                   'P': ['MR', 'MHP['],
+                   'M': ['MR', 'MHP['],
+                   'e': ['MR', 'MHP['],
+                   '[': ['MR', 'MHP['],
+                   ']': ['MR', 'MHP['],
+                   '^': ['ML', 'Print[']},
+
+          'MHP]': {'0': ['MR', 'MHP]'],
+                   '1': ['MR', 'MHP]'],
+                   'R': ['MR', 'MHP]'],
+                   'L': ['MR', 'MHP]'],
+                   'P': ['MR', 'MHP]'],
+                   'M': ['MR', 'MHP]'],
+                   'e': ['MR', 'MHP]'],
+                   '[': ['MR', 'MHP]'],
+                   ']': ['MR', 'MHP]'],
+                   '^': ['ML', 'Print]']},
+
+          'MHPNone': {'0': ['MR', 'MHPNone'],
+                      '1': ['MR', 'MHPNone'],
+                      'R': ['MR', 'MHPNone'],
+                      'L': ['MR', 'MHPNone'],
+                      'P': ['MR', 'MHPNone'],
+                      'M': ['MR', 'MHPNone'],
+                      'e': ['MR', 'MHPNone'],
+                      '[': ['MR', 'MHPNone'],
+                      ']': ['MR', 'MHPNone'],
+                      '^': ['ML', 'PrintNone']},
+
+          #Move head to move [Direction to move]
+          'MHMR': {'0': ['MR', 'MHMR'],
+                   '1': ['MR', 'MHMR'],
+                   'R': ['MR', 'MHMR'],
+                   'L': ['MR', 'MHMR'],
+                   'P': ['MR', 'MHMR'],
+                   'M': ['MR', 'MHMR'],
+                   'e': ['MR', 'MHMR'],
+                   '[': ['MR', 'MHMR'],
+                   ']': ['MR', 'MHMR'],
+                   '^': ['ML', 'MHR']},
+
+          'MHML': {'0': ['MR', 'MHML'],
+                   '1': ['MR', 'MHML'],
+                   'R': ['MR', 'MHML'],
+                   'L': ['MR', 'MHML'],
+                   'P': ['MR', 'MHML'],
+                   'M': ['MR', 'MHML'],
+                   'e': ['MR', 'MHML'],
+                   '[': ['MR', 'MHML'],
+                   ']': ['MR', 'MHML'],
+                   '^': ['ML', 'MHL']},
+
+          #Print [Char to print]
+          'Print0': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['P0', 'nextCommand']},
+
+          'Print1': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['P1', 'nextCommand']},
+
+          'Printe': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['Pe', 'nextCommand']},
+
+          'Print[': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['P[', 'nextCommand']},
+
+          'Print]': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['P]', 'nextCommand']},
+
+          'PrintNone': {'^': ['MR', 'Print0'],
+                     '0': ['EE', 'Print0'],
+                     '1': ['EE', 'Print0'],
+                     'e': ['EE', 'Print0'],
+                     None: ['nextCommand']},
+
+          #Move Head [Direction]
+          'MHL': {'^': ['ML', 'MHL'],
+                  '[': ['SBL'],
+                  '0': ['ML', 'P^', 'MR', 'MR', 'EE', 'nextCommand'],
+                  '1': ['ML', 'P^', 'MR', 'MR', 'EE', 'nextCommand'],
+                  'e': ['ML', 'P^', 'MR', 'MR', 'EE', 'nextCommand']},
+
+          'MHR': {'^': ['MR', 'MR', 'MHR'],
+                  ']': ['SBR'],
+                  None: ['P^', 'ML', 'ML', 'EE', 'nextCommand']},
+
+          #Shift Bracket [Direction]
+          'SBR': {']': ['EE', 'MR', 'MR', 'P]', 'currentCommand']},
+
+          'SBL': {'[': ['MR', 'SBL'],
+                  '0': ['MR', 'SBL'],
+                  '1': ['MR', 'SBL'],
+                  'e': ['MR', 'SBL'],
+                  '^': ['MR', 'SBL'],
+                  ']': ['MR', 'SBLE']},
+
+          #Shift Bracket Left Execute
+          'SBLE': {']': ['EE', 'MR', 'MR', 'P]', 'ML', 'SBLE'],
+                   '0': ['EE', 'MR', 'MR', 'P0', 'ML', 'SBLE'],
+                   '1': ['EE', 'MR', 'MR', 'P1', 'ML', 'SBLE'],
+                   'e': ['EE', 'MR', 'MR', 'Pe', 'ML', 'SBLE'],
+                   '^': ['EE', 'MR', 'MR', 'P^', 'ML', 'SBLE'],
+                   '[': ['currentCommand'],
+                   None: ['ML', 'SBLE']}
+          }
+
+
+
+
+
+def printState(tape, pos):
+    for p in tape:
+        print(p if p != None else '_', end=' ')
+
+    print()
+    print(' ' * pos * 2 + '^')
+
+state = 'b'
+tape = [None for pos in range(10)]
+headloc = 0
+printState(tape, headloc)
+while state != 'e':
+    print('\n\nState: ' + state)
+    steps = config[state][tape[headloc]]
+    for step in steps[:-1]:
+        if headloc >= len(tape) - 1:
+            tape.extend([None for i in tape])
+
+        else:
+            if step[0] == 'P':
+                tape[headloc] = step[1]
+            elif step[0] == 'M':
+                headloc += 1 if step[1] == 'R' else -1
+            elif step == 'EE':
+                tape[headloc] = None
+            printState(tape, headloc)
+    state = steps[-1]
+    print('Goto: ' + state)
+
